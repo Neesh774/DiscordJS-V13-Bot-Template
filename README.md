@@ -1,7 +1,5 @@
-# <bot_name>
+# Discord.js Template
 ### Setup
-
-**Hosting <bot_name> yourself is not supported.**
 
 -   <bot_name> requires **Node.js `v16.8.0`** and **mongoDB `v3.0.0` or higher**.
 
