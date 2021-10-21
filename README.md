@@ -1,4 +1,6 @@
 # Discord.js Template
+### About
+This is a template for a Discord.js bot using Discord.js V13 with full support for slash commands. There's an explanation for how to set it up below and in the info.js command, so it should be very easy to get up and running.
 ### Setup
 
 -   <bot_name> requires **Node.js `v16.8.0`** and **mongoDB `v3.0.0` or higher**.
