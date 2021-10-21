@@ -17,7 +17,8 @@ Before committing any changes, run `npm run lint:fix` to run ESLint & Prettier. 
 
 ## License
 
-    Copyright (C) 2020-2021 YOUR NAME
+    Copyright (C) 2020-2021 Nicholas Christopher
+Copyright (C) <year> YOUR NAME
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by

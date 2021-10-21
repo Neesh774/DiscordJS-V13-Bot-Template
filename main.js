@@ -1,5 +1,6 @@
 /*
-Copyright (C) 2020-2021 YOUR NAME
+Copyright (C) 2020-2021 Nicholas Christopher
+Copyright (C) <year> YOUR NAME
 
 This file is part of <bot_name>.
 

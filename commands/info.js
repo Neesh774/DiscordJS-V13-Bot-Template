@@ -1,5 +1,6 @@
 /*
-Copyright (C) 2020-2021 YOUR NAME
+Copyright (C) 2020-2021 Nicholas Christopher
+Copyright (C) <year> YOUR NAME
 This file is part of <bot_name>.
 Toast is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
