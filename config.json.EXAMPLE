@@ -1,6 +1,7 @@
 {
 	"token": "TOKEN",
-	"mongoPath": "mongodb://127.0.0.1:27017/quoter",
+	"clientId": "CLIENT_ID"
+	"mongoPath": "mongodb://127.0.0.1:27017/<bot_name>",
 	"maxGuildQuotes": 75,
 	"maxQuoteLength": 130,
 	"admins": [],

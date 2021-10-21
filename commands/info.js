@@ -1,44 +1,39 @@
 /*
-Copyright (C) 2020-2021 Nicholas Christopher
-
-This file is part of Quoter.
-
-Quoter is free software: you can redistribute it and/or modify
+Copyright (C) 2020-2021 YOUR NAME
+This file is part of <bot_name>.
+Toast is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
 the Free Software Foundation, version 3.
-
-Quoter is distributed in the hope that it will be useful,
+Toast is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Affero General Public License for more details.
-
 You should have received a copy of the GNU Affero General Public License
-along with Quoter.  If not, see <https://www.gnu.org/licenses/>.
+along with Toast.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
 const { version } = require("../package.json");
-const ms = require("ms");
 
 module.exports = {
-	data: new SlashCommandBuilder()
-		.setName("info")
-		.setDescription("Displays information about Quoter."),
-	cooldown: 1,
-	guildOnly: false,
-	async execute(interaction) {
+	data: new SlashCommandBuilder()  // Using the slash command builder from @discordjs/builders to create the slash command in Discord. This is required!
+		.setName("info")  // see https://discordjs.guide/interactions/registering-slash-commands.html#option-types for more info on slash command builders
+		.setDescription("Displays information about <bot_name>"),
+	cooldown: 1,  // cooldown for members to use the command in seconds
+	guildOnly: false, // whether or not the command can only be used in servers
+	async execute(interaction) {  // the function to be run when the command is used
 		const {
 			client: { uptime, guilds, ws },
 			createdTimestamp,
 		} = interaction;
 
-		const now = Date.now();
+		const now = new Date().getTime();
 
 		const serverCount = guilds.cache.size;
 		const msgPing = now - createdTimestamp;
-		const startedAt = new Date(now - uptime).toLocaleDateString();
-		const duration = ms(uptime, { long: true });
+        const time = Math.floor(new Date(now - uptime).getTime() / 1000);
+		const startedAt = `<t:${time}:R>`;
 		const memberCount = guilds.cache
 			.reduce((acc, g) => acc + g.memberCount, 0)
 			.toLocaleString();
@@ -49,14 +44,11 @@ module.exports = {
 					.setTitle("💬 Information")
 					.setColor("BLUE")
 					.setDescription(
-						`*Quoter* is a Discord bot which stores quotes for servers & retrieves them on demand. It supports listing, (randomly) displaying, deleting, and editing quotes!
-
-**[🤖 Add Quoter to your server](https://discord.com/api/oauth2/authorize?client_id=784853298271748136&permissions=19456&scope=bot%20applications.commands)**
-[🙋 Support Server](https://discord.gg/QzXTgS2CNk) 
-[🐛 Report Bugs](https://github.com/nchristopher/quoter/issues/new/choose)
-[🛠️ Source Code](https://github.com/nchristopher/quoter)
-[🔒 Privacy Policy](https://github.com/nchristopher/quoter/blob/main/privacy.md)
-[💰 Donate](https://ko-fi.com/nchristopher)`
+						`This is a really cool bot
+**[🤖 Add Toast to your server](https://discord.com)**
+[🙋 Support Server](https://discord.gg) 
+[🐛 Report Bugs](https://github.com)
+[🛠️ Source Code](https://github.com)`
 					)
 					.addField(
 						"Server Count",
@@ -65,7 +57,7 @@ module.exports = {
 					)
 					.addField(
 						"Uptime",
-						`Online since **${startedAt}**, that's **${duration}**!`,
+						`Online since **${startedAt}**!`,
 						true
 					)
 					.addField(
@@ -73,7 +65,7 @@ module.exports = {
 						`I received your message in \`${msgPing}\`ms. WebSocket ping is \`${ws.ping}\`ms`,
 						true
 					)
-					.setFooter(`Quoter v${version}`),
+					.setFooter(`Toast v${version}`),
 			],
 		});
 	},

@@ -1,24 +1,23 @@
 /*
-Copyright (C) 2020-2021 Nicholas Christopher
+Copyright (C) 2020-2021 YOUR NAME
 
-This file is part of Quoter.
+This file is part of <bot_name>.
 
-Quoter is free software: you can redistribute it and/or modify
+<bot_name> is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
 the Free Software Foundation, version 3.
 
-Quoter is distributed in the hope that it will be useful,
+<bot_name> is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
-along with Quoter.  If not, see <https://www.gnu.org/licenses/>.
+along with <bot_name>.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 const { Collection } = require("discord.js");
 const { disabledCommands } = require("../config.json");
-const Guild = require("../schemas/guild.js");
 
 const cooldowns = new Collection();
 
@@ -77,43 +76,7 @@ module.exports = {
 
 		if (!isAdmin && command.permission) {
 			const isManager = member.permissions.has("MANAGE_GUILD");
-			if (command.permission === "create") {
-				const { allQuote } = (interaction.db ??=
-					await Guild.findOneAndUpdate(
-						{ _id: interaction.guild.id },
-						{},
-						{ upsert: true, new: true }
-					));
-
-				if (!allQuote && !isManager) {
-					return await interaction.reply({
-						content: `✋ **|** That action requires the **Manage Guild** permission.
-		
-**❗ To allow anyone to create quotes**, have an admin use \`/allquote\`.`,
-						ephemeral: true,
-					});
-				}
-			} else if (command.permission === "manageSelf") {
-				const { manageSelf, quotes } = (interaction.db ??=
-					await Guild.findOneAndUpdate(
-						{ _id: interaction.guild.id },
-						{},
-						{ upsert: true, new: true }
-					));
-
-				const id = interaction.options.getInteger("id");
-				const createdQuote =
-					quotes[id - 1]?.quoterID === interaction.user.id;
-
-				if (!isManager && !(manageSelf && createdQuote)) {
-					return await interaction.reply({
-						content: `✋ **|** That action requires the **Manage Guild** permission.
-		
-**❗ To allow users to delete/edit quotes they've created**, have an admin use \`/manageself\`.`,
-						ephemeral: true,
-					});
-				}
-			} else if (command.permission === "manage") {
+			if (command.permission === "manage") {
 				if (!isManager) {
 					return await interaction.reply({
 						content:
@@ -132,7 +95,7 @@ module.exports = {
 
 			interaction.reply({
 				content:
-					"❌ **|** Something went wrong while executing that command. Report this with `/bugs`!",
+					"❌ **|** Something went wrong while executing that command!",
 				ephemeral: true,
 			});
 		}

@@ -1,22 +1,22 @@
 /*
-Copyright (C) 2020-2021 Nicholas Christopher
+Copyright (C) 2020-2021 YOUR NAME
 
-This file is part of Quoter.
+This file is part of <bot_name>.
 
-Quoter is free software: you can redistribute it and/or modify
+<bot_name> is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
 the Free Software Foundation, version 3.
 
-Quoter is distributed in the hope that it will be useful,
+<bot_name> is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
-along with Quoter.  If not, see <https://www.gnu.org/licenses/>.
+along with <bot_name>.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-console.log("Starting Quoter...");
+console.log("Starting <bot_name>...");
 
 const { Client, Collection, Intents, Options } = require("discord.js");
 const mongoose = require("mongoose");
@@ -57,12 +57,9 @@ for (const file of eventFiles) {
 }
 
 process.on("SIGINT", async () => {
-	mongoose.connection.close(() => {
-		console.log("Closed mongoDB connection");
-		client.destroy();
-		console.log("Destroyed client");
-		process.exit(0);
-	});
+	client.destroy();
+	console.log("Destroyed client");
+	process.exit(0);
 });
 
 client.login(config.token);
